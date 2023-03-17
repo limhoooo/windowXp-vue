@@ -27,7 +27,7 @@ export default defineComponent({
       tabIndex.value = 1;
     };
     const ondbClickIcon = () => {
-      console.log("hi");
+      iconValue.value.onDbClick();
       isActive.value = false;
     };
     const onBlurIcon = () => {
@@ -55,7 +55,7 @@ export default defineComponent({
 }
 .icon__box .icon--name {
   width: 100%;
-  font-size: 10px;
+  font-size: 12px;
   color: white;
   text-shadow: black 0px 1px 1px;
   display: flex;
