@@ -16,4 +16,5 @@ p {
   background-image: url("./assets/images/window_bg.jpg");
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
 }

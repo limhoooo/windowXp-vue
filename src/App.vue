@@ -2,6 +2,7 @@
 <template>
   <div class="window">
     <IconList />
+    <Footer />
   </div>
 </template>
 <script>
@@ -10,6 +11,9 @@ export default defineComponent({
   components: {
     IconList: defineAsyncComponent(() =>
       import("./components/windowIcons/IconList.vue")
+    ),
+    Footer: defineAsyncComponent(() =>
+      import("./components/footer/Footer.vue")
     ),
   },
 });
