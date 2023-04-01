@@ -1,4 +1,3 @@
-
 <template>
   <div
     class="icon__box"

@@ -3,14 +3,22 @@
 </template>
 
 <script>
-import { defineAsyncComponent, defineComponent } from "vue";
+import { defineAsyncComponent, defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const date = new Date();
-    const clack = date
-      .toLocaleTimeString()
-      .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+    const clack = ref("");
+    const time = (date) =>
+      date
+        .toLocaleTimeString()
+        .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+    setInterval(() => {
+      clack.value = time(new Date());
+    }, 1000);
+    const onCreated = () => {
+      clack.value = time(new Date());
+    };
+    onCreated();
     return {
       clack,
     };

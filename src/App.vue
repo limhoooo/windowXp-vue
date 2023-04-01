@@ -1,7 +1,7 @@
-
 <template>
   <div class="window">
     <IconList />
+    <FolderModal />
     <Footer />
   </div>
 </template>
@@ -15,9 +15,11 @@ export default defineComponent({
     Footer: defineAsyncComponent(() =>
       import("./components/footer/Footer.vue")
     ),
+    FolderModal: defineAsyncComponent(() =>
+      import("./components/UI/FolderModal.vue")
+    ),
   },
 });
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -16,6 +16,7 @@ export default defineComponent({
     const moveGithub = () => {
       window.open("https://github.com/limhoooo", "_blank");
     };
+    const openFolder = () => {};
     const ICON_LIST = ref([
       {
         src: new URL(`@/assets/images/computer.png`, import.meta.url).href,
@@ -27,7 +28,7 @@ export default defineComponent({
         src: new URL(`@/assets/images/folder.png`, import.meta.url).href,
         alt: "folder icon",
         name: "포트폴리오",
-        onDbClick: moveGithub,
+        onDbClick: openFolder,
       },
       {
         src: new URL(`@/assets/images/github_logo.png`, import.meta.url).href,
