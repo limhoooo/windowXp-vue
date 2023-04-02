@@ -16,7 +16,7 @@ export default defineComponent({
       import("./components/footer/Footer.vue")
     ),
     FolderModal: defineAsyncComponent(() =>
-      import("./components/UI/FolderModal.vue")
+      import("./components/UI/folderModal/FolderModal.vue")
     ),
   },
 });
