@@ -3,13 +3,16 @@
     <div class="header__bg"></div>
     <header class="folderModal__header">
       <div>
-        <img class="header--img" :src="computer" alt="computer" />
-        <span> 내 컴퓨터 </span>
+        <img class="header--img" :src="ICON.src" alt="computer" />
+        <span> {{ ICON.name }} </span>
       </div>
       <div class="folderModal__header__btn">
         <button class="folderModal__header__btn--min"></button>
         <button class="folderModal__header__btn--max"></button>
-        <button class="folderModal__header__btn--close"></button>
+        <button
+          class="folderModal__header__btn--close"
+          @click="$emit('close')"
+        ></button>
       </div>
     </header>
   </div>
@@ -18,6 +21,9 @@
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import computer from "../../../assets/images/computer.png";
 export default defineComponent({
+  props: {
+    ICON: Object,
+  },
   setup() {
     return {
       computer,
@@ -96,6 +102,7 @@ export default defineComponent({
 }
 .header--img {
   width: 16px;
+  margin: 0 2px 0 5px;
   vertical-align: sub;
 }
 .folderModal__header__btn {

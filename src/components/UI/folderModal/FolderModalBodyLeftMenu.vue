@@ -5,41 +5,38 @@
         <div class="crad--header">시스템 작업</div>
         <div class="crad--body">
           <div class="crad--body--row">
+            <img :src="left_icon_01" alt="left_icon_01_png" />
             <p>화면 시스템 정보</p>
           </div>
           <div class="crad--body--row">
-            <p>화면 시스템 정보</p>
+            <img :src="left_icon_02" alt="left_icon_02_png" />
+            <p>프로그램 추가 또는 제거</p>
           </div>
           <div class="crad--body--row">
-            <p>화면 시스템 정보</p>
-          </div>
-        </div>
-      </div>
-      <div class="crad">
-        <div class="crad--header">시스템 작업</div>
-        <div class="crad--body">
-          <div class="crad--body--row">
-            <p>화면 시스템 정보</p>
-          </div>
-          <div class="crad--body--row">
-            <p>화면 시스템 정보</p>
-          </div>
-          <div class="crad--body--row">
-            <p>화면 시스템 정보</p>
+            <img :src="left_icon_03" alt="left_icon_03_png" />
+
+            <p>설정 변경</p>
           </div>
         </div>
       </div>
       <div class="crad">
-        <div class="crad--header">시스템 작업</div>
+        <div class="crad--header">다른 작업</div>
         <div class="crad--body">
           <div class="crad--body--row">
-            <p>화면 시스템 정보</p>
+            <img :src="left_icon_04" alt="left_icon_04_png" />
+            <p>내 네트워크 관리</p>
           </div>
           <div class="crad--body--row">
-            <p>화면 시스템 정보</p>
+            <img :src="left_icon_05" alt="left_icon_05_png" />
+            <p>내 폴더</p>
           </div>
           <div class="crad--body--row">
-            <p>화면 시스템 정보</p>
+            <img :src="left_icon_06" alt="left_icon_06_png" />
+            <p>공류 폴더</p>
+          </div>
+          <div class="crad--body--row">
+            <img :src="left_icon_07" alt="left_icon_07_png" />
+            <p>환경설정</p>
           </div>
         </div>
       </div>
@@ -48,9 +45,25 @@
 </template>
 <script>
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
+import left_icon_01 from "../../../assets/images/leftIcon/left_icon_01.png";
+import left_icon_02 from "../../../assets/images/leftIcon/left_icon_02.png";
+import left_icon_03 from "../../../assets/images/leftIcon/left_icon_03.png";
+import left_icon_04 from "../../../assets/images/leftIcon/left_icon_04.png";
+import left_icon_05 from "../../../assets/images/leftIcon/left_icon_05.png";
+import left_icon_06 from "../../../assets/images/leftIcon/left_icon_06.png";
+import left_icon_07 from "../../../assets/images/leftIcon/left_icon_07.png";
+
 export default defineComponent({
   setup() {
-    return {};
+    return {
+      left_icon_01,
+      left_icon_02,
+      left_icon_03,
+      left_icon_04,
+      left_icon_05,
+      left_icon_06,
+      left_icon_07,
+    };
   },
 });
 {
@@ -105,6 +118,15 @@ export default defineComponent({
   font-size: 10px;
   line-height: 14px;
   color: rgb(12, 50, 125);
+  display: flex;
+}
+.folderModal__body--content--left .crad .crad--body .crad--body--row img {
+  margin-right: 5px;
+  width: 14px;
+  height: 14px;
+}
+.folderModal__body--content--left .crad .crad--body .crad--body--row p {
+  margin-bottom: 2px;
 }
 .folderModal__body--content--left .crad .crad--body .crad--body--row p:hover {
   cursor: pointer;

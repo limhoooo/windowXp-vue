@@ -3,7 +3,7 @@
     <FolderModalBodyToolbar />
     <div class="folderModal__body--content">
       <FolderModalBodyLeftMenu />
-      <FolderModalBodyRightMenu />
+      <FolderModalBodyRightMenu :ICON_LIST="ICON_LIST" />
     </div>
   </div>
 </template>
@@ -27,6 +27,9 @@ export default defineComponent({
     FolderModalBodyRightMenu: defineAsyncComponent(() =>
       import("./FolderModalBodyRightMenu.vue")
     ),
+  },
+  props: {
+    ICON_LIST: Array,
   },
   setup() {
     return {

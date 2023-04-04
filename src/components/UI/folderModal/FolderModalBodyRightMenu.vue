@@ -1,12 +1,18 @@
 <template>
-  <div class="folderModal__body--content--right"></div>
+  <div class="folderModal__body--content--right">
+    <IconList :ICON_LIST="ICON_LIST" :type="'folder'" />
+  </div>
 </template>
 <script>
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 export default defineComponent({
-  components: {},
-  setup() {
-    return {};
+  components: {
+    IconList: defineAsyncComponent(() =>
+      import("../../windowIcons/IconList.vue")
+    ),
+  },
+  props: {
+    ICON_LIST: Array,
   },
 });
 {

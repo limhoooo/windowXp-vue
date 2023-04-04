@@ -1,22 +1,32 @@
 <template>
   <div class="footer">
     <StartMenu />
-
-    <!-- 현재 사용중인 리스트 component-->
-
+    <ActiveMenu
+      v-for="modal in activeModalList"
+      :key="modal.id"
+      :data="modal"
+    />
     <WidowClack />
   </div>
 </template>
 
 <script>
-import { defineAsyncComponent, defineComponent } from "vue";
+import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
+import { folderModalStore } from "../../store/folderModalStore";
 
 export default defineComponent({
   components: {
     StartMenu: defineAsyncComponent(() => import("./StartMenu.vue")),
+    ActiveMenu: defineAsyncComponent(() => import("./ActiveMenu.vue")),
     WidowClack: defineAsyncComponent(() => import("./WidowClack.vue")),
   },
-  setup() {},
+  setup() {
+    const store = folderModalStore();
+    const activeModalList = computed(() => store.ACTIVE_MODAL);
+    return {
+      activeModalList,
+    };
+  },
 });
 </script>
 

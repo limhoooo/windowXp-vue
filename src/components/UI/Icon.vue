@@ -1,46 +1,85 @@
 <template>
-  <div
-    class="icon__box"
-    :class="{ activeClass: isActive }"
-    @click="onClickIcon"
-    @dblclick="ondbClickIcon"
-    @blur="onBlurIcon"
-    :tabindex="tabIndex"
-  >
-    <img :src="iconValue.src" :alt="iconValue.alt" />
-    <p class="icon--name">{{ iconValue.name }}</p>
+  <div>
+    <div
+      class="icon__box"
+      :class="{ activeClass: isActive }"
+      @click="onClickIcon"
+      @dblclick="ondbClickIcon"
+      @blur="onBlurIcon"
+      :tabindex="tabIndex"
+    >
+      <img :src="iconValue.src" :alt="iconValue.alt" />
+      <p :class="iconClass">{{ iconValue.name }}</p>
+    </div>
+    <FolderModal
+      v-if="iconValue.type === 'folder' && isFolder"
+      :ICON_LIST="iconValue.icons"
+      :ICON="icon"
+      :zIndex="zIndex"
+      @close="closeModal"
+    />
   </div>
 </template>
 <script>
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
+import { folderModalStore } from "../../store/folderModalStore.js";
 export default defineComponent({
+  components: {
+    FolderModal: defineAsyncComponent(() =>
+      import("./folderModal/FolderModal.vue")
+    ),
+  },
   props: {
     icon: Object,
+    type: String,
   },
   setup(props) {
+    const store = folderModalStore();
     const iconValue = computed(() => props.icon);
+    const typeValue = computed(() => props.type);
+    const isFolder = ref(false);
     const isActive = ref(false);
     const tabIndex = ref(0);
+    const zIndex = ref(0);
+    const iconClass = computed(() =>
+      typeValue.value === "folder" ? "icon__folder--name" : "icon--name"
+    );
     const onClickIcon = () => {
       isActive.value = true;
       tabIndex.value = 1;
     };
     const ondbClickIcon = () => {
-      iconValue.value.onDbClick();
+      if (iconValue.value.type === "folder") {
+        isFolder.value = true;
+        zIndex.value = ++store.ZINDEX;
+        store.ACTIVE_MODAL = [iconValue.value, ...store.ACTIVE_MODAL];
+      } else {
+        iconValue.value.onMoveLink();
+      }
       isActive.value = false;
     };
+
     const onBlurIcon = () => {
       isActive.value = false;
       tabIndex.value = 0;
     };
-
+    const closeModal = () => {
+      isFolder.value = false;
+      store.ACTIVE_MODAL = store.ACTIVE_MODAL.filter(
+        (item) => item.id !== iconValue.value.id
+      );
+    };
     return {
       iconValue,
       isActive,
       tabIndex,
+      isFolder,
+      iconClass,
+      zIndex,
       onClickIcon,
       ondbClickIcon,
       onBlurIcon,
+      closeModal,
     };
   },
 });
@@ -52,11 +91,17 @@ export default defineComponent({
   margin-bottom: 30px;
   text-align: center;
 }
-.icon__box .icon--name {
+.icon--name {
   width: 100%;
   font-size: 12px;
   color: white;
   text-shadow: black 0px 1px 1px;
+  display: flex;
+  justify-content: center;
+}
+.icon__folder--name {
+  width: 100%;
+  font-size: 12px;
   display: flex;
   justify-content: center;
 }
