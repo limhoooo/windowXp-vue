@@ -1,10 +1,16 @@
 <template>
   <div
     class="folderModal"
-    :style="{ 'z-index': ZINDEX }"
+    :class="{ active: isActive }"
     @click="onClickZindexHandler"
+    :tabindex="isActive ? '1' : '0'"
+    @blur="focusOut"
   >
-    <FolderModalHead :ICON="ICON" @close="$emit('close')" />
+    <FolderModalHead
+      :ICON="ICON"
+      @close="$emit('close')"
+      :isActive="isActive"
+    />
     <FolderModalBody :ICON_LIST="ICON_LIST" />
   </div>
 </template>
@@ -30,31 +36,29 @@ export default defineComponent({
   props: {
     ICON: Object,
     ICON_LIST: Array,
-    zIndex: Number,
   },
   setup(props) {
     const store = folderModalStore();
-    const ZINDEX_PROPS = computed(() => props.zIndex);
+    const iconValue = computed(() => props.ICON);
+    const activeModalId = computed(() => store.ACTIVE_MODAL_ID);
+    const isActive = computed(() => iconValue.value.id === activeModalId.value);
     const ZINDEX = ref(0);
     const onClickZindexHandler = () => {
-      ZINDEX.value = ZINDEX_PROPS.value + store.ZINDEX + 1;
-      store.ZINDEX = ZINDEX.value;
+      store.ACTIVE_MODAL_ID = iconValue.value.id;
     };
-
-    // props.zIndex update
-    watch(
-      () => props.zIndex,
-      (cur) => {
-        ZINDEX.value = cur;
-      }
-    );
+    const focusOut = () => {
+      store.ACTIVE_MODAL_ID = "";
+    };
     const onCreated = () => {
-      ZINDEX.value = store.ZINDEX;
+      // ZINDEX.value = store.ZINDEX;
     };
     onCreated();
     return {
       ZINDEX,
+      isActive,
+      iconValue,
       onClickZindexHandler,
+      focusOut,
     };
   },
 });
@@ -70,10 +74,15 @@ export default defineComponent({
   display: flex;
   position: absolute;
   padding: 3px;
-  background-color: rgb(8, 49, 217);
+  background-color: rgb(101, 130, 245);
   flex-direction: column;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   margin-left: 200px;
+  z-index: 0;
+}
+.folderModal.active {
+  background-color: rgb(8, 49, 217);
+  z-index: 1;
 }
 </style>

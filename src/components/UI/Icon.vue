@@ -15,7 +15,6 @@
       v-if="iconValue.type === 'folder' && isFolder"
       :ICON_LIST="iconValue.icons"
       :ICON="icon"
-      :zIndex="zIndex"
       @close="closeModal"
     />
   </div>
@@ -40,7 +39,6 @@ export default defineComponent({
     const isFolder = ref(false);
     const isActive = ref(false);
     const tabIndex = ref(0);
-    const zIndex = ref(0);
     const iconClass = computed(() =>
       typeValue.value === "folder" ? "icon__folder--name" : "icon--name"
     );
@@ -51,8 +49,8 @@ export default defineComponent({
     const ondbClickIcon = () => {
       if (iconValue.value.type === "folder") {
         isFolder.value = true;
-        zIndex.value = ++store.ZINDEX;
-        store.ACTIVE_MODAL = [iconValue.value, ...store.ACTIVE_MODAL];
+        store.ACTIVE_MODAL = [...store.ACTIVE_MODAL, iconValue.value];
+        store.ACTIVE_MODAL_ID = iconValue.value.id;
       } else {
         iconValue.value.onMoveLink();
       }
@@ -65,6 +63,7 @@ export default defineComponent({
     };
     const closeModal = () => {
       isFolder.value = false;
+      store.ACTIVE_MODAL_ID = "";
       store.ACTIVE_MODAL = store.ACTIVE_MODAL.filter(
         (item) => item.id !== iconValue.value.id
       );
@@ -75,7 +74,6 @@ export default defineComponent({
       tabIndex,
       isFolder,
       iconClass,
-      zIndex,
       onClickIcon,
       ondbClickIcon,
       onBlurIcon,

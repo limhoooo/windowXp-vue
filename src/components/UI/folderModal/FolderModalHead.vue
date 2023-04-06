@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header__bg"></div>
+    <div class="header__bg" :class="{ active: isActive }"></div>
     <header class="folderModal__header">
       <div>
         <img class="header--img" :src="ICON.src" alt="computer" />
@@ -23,6 +23,7 @@ import computer from "../../../assets/images/computer.png";
 export default defineComponent({
   props: {
     ICON: Object,
+    isActive: Boolean,
   },
   setup() {
     return {
@@ -36,6 +37,33 @@ export default defineComponent({
 
 <style scoped>
 .header__bg {
+  background: linear-gradient(
+    rgb(118, 151, 231) 0%,
+    rgb(126, 158, 227) 3%,
+    rgb(148, 175, 232) 6%,
+    rgb(151, 180, 233) 8%,
+    rgb(130, 165, 228) 14%,
+    rgb(124, 159, 226) 17%,
+    rgb(121, 150, 222) 25%,
+    rgb(123, 153, 225) 56%,
+    rgb(130, 169, 233) 81%,
+    rgb(128, 165, 231) 89%,
+    rgb(123, 150, 225) 94%,
+    rgb(122, 147, 223) 97%,
+    rgb(171, 186, 227) 100%
+  );
+
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  height: 28px;
+  pointer-events: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden;
+}
+.header__bg.active {
   background: linear-gradient(
     rgb(0, 88, 238) 0%,
     rgb(53, 147, 255) 4%,
@@ -53,23 +81,23 @@ export default defineComponent({
     rgb(0, 64, 171) 94%,
     rgb(0, 48, 146) 100%
   );
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  height: 28px;
-  pointer-events: none;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  overflow: hidden;
 }
+
+.header__bg.active::after {
+  background: linear-gradient(to right, rgb(22, 56, 230) 0%, transparent 100%);
+}
+
+.header__bg.active::before {
+  background: linear-gradient(to right, rgb(22, 56, 230) 0%, transparent 100%);
+}
+
 .header__bg::after {
   content: "";
   opacity: 1;
   display: block;
   position: absolute;
   right: 0px;
-  background: linear-gradient(to left, rgb(22, 56, 230) 0%, transparent 100%);
+  background: linear-gradient(to left, rgb(101, 130, 245) 0%, transparent 100%);
   top: 0px;
   bottom: 0px;
   width: 15px;
@@ -80,7 +108,11 @@ export default defineComponent({
   position: absolute;
   left: 0px;
   opacity: 1;
-  background: linear-gradient(to right, rgb(22, 56, 230) 0%, transparent 100%);
+  background: linear-gradient(
+    to right,
+    rgb(101, 130, 245) 0%,
+    transparent 100%
+  );
   top: 0px;
   bottom: 0px;
   width: 15px;
@@ -126,8 +158,11 @@ export default defineComponent({
   height: 22px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 3px;
+  opacity: 0.5;
 }
-
+.active .folderModal__header__btn button {
+  opacity: 1;
+}
 .folderModal__header__btn--min::before {
   content: "";
   position: absolute;
