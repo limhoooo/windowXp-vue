@@ -16,6 +16,7 @@
       :ICON_LIST="iconValue.icons"
       :ICON="icon"
       @close="closeModal"
+      @hide="hideModal"
     />
   </div>
 </template>
@@ -49,8 +50,12 @@ export default defineComponent({
     const ondbClickIcon = () => {
       if (iconValue.value.type === "folder") {
         isFolder.value = true;
-        store.ACTIVE_MODAL = [...store.ACTIVE_MODAL, iconValue.value];
         store.ACTIVE_MODAL_ID = iconValue.value.id;
+        const findFolder = store.ACTIVE_MODAL.find(
+          (item) => item.id === iconValue.value.id
+        );
+        if (!findFolder)
+          store.ACTIVE_MODAL = [...store.ACTIVE_MODAL, iconValue.value];
       } else {
         iconValue.value.onMoveLink();
       }
@@ -68,6 +73,10 @@ export default defineComponent({
         (item) => item.id !== iconValue.value.id
       );
     };
+    const hideModal = () => {
+      console.log("aaa");
+      isFolder.value = false;
+    };
     return {
       iconValue,
       isActive,
@@ -78,6 +87,7 @@ export default defineComponent({
       ondbClickIcon,
       onBlurIcon,
       closeModal,
+      hideModal,
     };
   },
 });
@@ -88,6 +98,9 @@ export default defineComponent({
   width: 70px;
   margin-bottom: 30px;
   text-align: center;
+}
+.icon__box img {
+  width: 42px;
 }
 .icon--name {
   width: 100%;

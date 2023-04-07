@@ -7,7 +7,10 @@
         <span> {{ ICON.name }} </span>
       </div>
       <div class="folderModal__header__btn">
-        <button class="folderModal__header__btn--min"></button>
+        <button
+          class="folderModal__header__btn--min"
+          @click.stop="folderModalMin"
+        ></button>
         <button class="folderModal__header__btn--max"></button>
         <button
           class="folderModal__header__btn--close"
@@ -20,14 +23,22 @@
 <script>
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import computer from "../../../assets/images/computer.png";
+import { folderModalStore } from "../../../store/folderModalStore";
 export default defineComponent({
   props: {
     ICON: Object,
     isActive: Boolean,
   },
-  setup() {
+  setup(props, { emit }) {
+    const store = folderModalStore();
+
+    const folderModalMin = () => {
+      // store.ACTIVE_MODAL_ID = "";
+      // emit("hide");
+    };
     return {
       computer,
+      folderModalMin,
     };
   },
 });
@@ -84,7 +95,7 @@ export default defineComponent({
 }
 
 .header__bg.active::after {
-  background: linear-gradient(to right, rgb(22, 56, 230) 0%, transparent 100%);
+  background: linear-gradient(to left, rgb(22, 56, 230) 0%, transparent 100%);
 }
 
 .header__bg.active::before {
@@ -159,6 +170,10 @@ export default defineComponent({
   border: 1px solid rgb(255, 255, 255);
   border-radius: 3px;
   opacity: 0.5;
+}
+
+.folderModal__header__btn button:hover {
+  filter: brightness(120%);
 }
 .active .folderModal__header__btn button {
   opacity: 1;

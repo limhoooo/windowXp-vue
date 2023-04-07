@@ -67,6 +67,13 @@ export default defineComponent({
         type: "link",
         onMoveLink: moveGithub,
       },
+      {
+        id: new Date().getTime() + Math.random(),
+        src: new URL(`@/assets/images/notepad.png`, import.meta.url).href,
+        alt: "notepad icon",
+        name: "메모장",
+        type: "folder",
+      },
     ]);
 
     return {

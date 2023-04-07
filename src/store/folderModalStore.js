@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
-import { reactive, ref } from "vue";
-import _ from "lodash";
+import { ref } from "vue";
 
 export const folderModalStore = defineStore("folderModalStore", () => {
   const ACTIVE_MODAL = ref([]);

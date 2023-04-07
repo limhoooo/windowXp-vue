@@ -1,5 +1,5 @@
 <template>
-  <div class="start__menu" @click="toogleMenu" tabindex="1" @blur="hideMenu">
+  <div class="start__menu" @click="toogleMenu" tabindex="1">
     <div class="start__menu--box" v-show="isMenu">
       <header class="start__menu__header"></header>
       <section class="start__menu__body"></section>
@@ -36,6 +36,8 @@ export default {
   background-size: 100%;
   background-repeat: no-repeat;
   position: relative;
+  margin-right: 10px;
+  z-index: 99;
 }
 .start__menu:hover {
   filter: brightness(105%);

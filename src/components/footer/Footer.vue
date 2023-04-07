@@ -1,11 +1,13 @@
 <template>
   <div class="footer">
-    <StartMenu />
-    <ActiveMenu
-      v-for="modal in activeModalList"
-      :key="modal.id"
-      :data="modal"
-    />
+    <div class="footer--left__Box">
+      <StartMenu />
+      <ActiveMenu
+        v-for="modal in activeModalList"
+        :key="modal.id"
+        :data="modal"
+      />
+    </div>
     <WidowClack />
   </div>
 </template>
@@ -57,5 +59,9 @@ export default defineComponent({
   left: 0px;
   display: flex;
   justify-content: space-between;
+}
+.footer--left__Box {
+  width: 100%;
+  display: flex;
 }
 </style>
