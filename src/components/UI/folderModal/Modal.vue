@@ -15,7 +15,11 @@
         :isActive="isActive"
       />
     </div>
-    <FolderModalBody :ICON_LIST="ICON_LIST" />
+    <FolderModalBody
+      v-if="iconValue.type === 'folder'"
+      :ICON_LIST="ICON_LIST"
+    />
+    <NotePadModal v-if="iconValue.type === 'notepad'" />
   </div>
 </template>
 <script>
@@ -37,6 +41,7 @@ export default defineComponent({
     FolderModalBody: defineAsyncComponent(() =>
       import("./FolderModalBody.vue")
     ),
+    NotePadModal: defineAsyncComponent(() => import("./NotePadModal.vue")),
   },
   props: {
     ICON: Object,
@@ -47,7 +52,6 @@ export default defineComponent({
     const iconValue = computed(() => props.ICON);
     const activeModalId = computed(() => store.ACTIVE_MODAL_ID);
     const isActive = computed(() => iconValue.value.id === activeModalId.value);
-    const ZINDEX = ref(0);
     const folderModal = ref(null);
     const folderModalHaeder = ref(null);
     const onClickZindexHandler = () => {
@@ -99,16 +103,11 @@ export default defineComponent({
       folderModalHaeder.value.onmousedown = dragMouseDown;
     };
 
-    const onCreated = () => {
-      // ZINDEX.value = store.ZINDEX;
-    };
-    onCreated();
     onMounted(() => {
       dragElement(folderModal.value);
     });
 
     return {
-      ZINDEX,
       isActive,
       iconValue,
       onClickZindexHandler,

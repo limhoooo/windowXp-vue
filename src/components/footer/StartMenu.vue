@@ -1,5 +1,5 @@
 <template>
-  <div class="start__menu" @click="toogleMenu" tabindex="1">
+  <div class="start__menu" @click="toogleMenu" tabindex="1" @blur="hideMenu">
     <div class="start__menu--box" v-show="isMenu">
       <header class="start__menu__header"></header>
       <section class="start__menu__body"></section>

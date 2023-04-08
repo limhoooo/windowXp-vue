@@ -2,10 +2,14 @@
   <div class="window">
     <IconList :ICON_LIST="ICON_LIST" />
     <Footer />
+    <button class="fullSizeBtn" @click="onClickFullsize">
+      <img :src="fullscreen" alt="fullscreenIcon" />
+    </button>
   </div>
 </template>
 <script>
 import { defineAsyncComponent, defineComponent, ref } from "vue";
+import fullscreen from "./assets/images/fullscreen.png";
 export default defineComponent({
   components: {
     IconList: defineAsyncComponent(() =>
@@ -16,6 +20,13 @@ export default defineComponent({
     ),
   },
   setup() {
+    const onClickFullsize = () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    };
     const moveGithub = () => {
       window.open("https://github.com/limhoooo", "_blank");
     };
@@ -72,15 +83,30 @@ export default defineComponent({
         src: new URL(`@/assets/images/notepad.png`, import.meta.url).href,
         alt: "notepad icon",
         name: "메모장",
-        type: "folder",
+        type: "notepad",
       },
     ]);
 
     return {
       ICON_LIST,
+      fullscreen,
+      onClickFullsize,
     };
   },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.fullSizeBtn {
+  position: absolute;
+  right: 40px;
+  top: 30px;
+  background: none;
+  border: none;
+}
+.fullSizeBtn img {
+  width: 26px;
+  filter: opacity(0.6);
+  cursor: pointer;
+}
+</style>

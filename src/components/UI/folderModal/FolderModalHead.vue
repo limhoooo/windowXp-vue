@@ -5,6 +5,7 @@
       <div>
         <img class="header--img" :src="ICON.src" alt="computer" />
         <span> {{ ICON.name }} </span>
+        <span v-if="idNotepadUpdate && ICON.type === 'notepad'"> *</span>
       </div>
       <div class="folderModal__header__btn">
         <button
@@ -23,15 +24,18 @@
 <script>
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import computer from "../../../assets/images/computer.png";
-import { folderModalStore } from "../../../store/folderModalStore";
+import { folderModalStore } from "../../../store/folderModalStore.js";
+import { noteModalStore } from "../../../store/noteModalStore.js";
+
 export default defineComponent({
   props: {
     ICON: Object,
     isActive: Boolean,
   },
   setup(props, { emit }) {
-    const store = folderModalStore();
-
+    const folderStore = folderModalStore();
+    const noteStore = noteModalStore();
+    const idNotepadUpdate = computed(() => noteStore.IS_NOTEPAD_UPDATE);
     const folderModalMin = () => {
       // store.ACTIVE_MODAL_ID = "";
       // emit("hide");
@@ -39,6 +43,7 @@ export default defineComponent({
     return {
       computer,
       folderModalMin,
+      idNotepadUpdate,
     };
   },
 });

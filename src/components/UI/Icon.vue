@@ -11,8 +11,8 @@
       <img :src="iconValue.src" :alt="iconValue.alt" />
       <p :class="iconClass">{{ iconValue.name }}</p>
     </div>
-    <FolderModal
-      v-if="iconValue.type === 'folder' && isFolder"
+    <Modal
+      v-if="iconValue.type !== 'link' && isModal"
       :ICON_LIST="iconValue.icons"
       :ICON="icon"
       @close="closeModal"
@@ -25,9 +25,7 @@ import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import { folderModalStore } from "../../store/folderModalStore.js";
 export default defineComponent({
   components: {
-    FolderModal: defineAsyncComponent(() =>
-      import("./folderModal/FolderModal.vue")
-    ),
+    Modal: defineAsyncComponent(() => import("./folderModal/Modal.vue")),
   },
   props: {
     icon: Object,
@@ -37,7 +35,7 @@ export default defineComponent({
     const store = folderModalStore();
     const iconValue = computed(() => props.icon);
     const typeValue = computed(() => props.type);
-    const isFolder = ref(false);
+    const isModal = ref(false);
     const isActive = ref(false);
     const tabIndex = ref(0);
     const iconClass = computed(() =>
@@ -48,16 +46,16 @@ export default defineComponent({
       tabIndex.value = 1;
     };
     const ondbClickIcon = () => {
-      if (iconValue.value.type === "folder") {
-        isFolder.value = true;
+      if (iconValue.value.type === "link") {
+        iconValue.value.onMoveLink();
+      } else {
+        isModal.value = true;
         store.ACTIVE_MODAL_ID = iconValue.value.id;
         const findFolder = store.ACTIVE_MODAL.find(
           (item) => item.id === iconValue.value.id
         );
         if (!findFolder)
           store.ACTIVE_MODAL = [...store.ACTIVE_MODAL, iconValue.value];
-      } else {
-        iconValue.value.onMoveLink();
       }
       isActive.value = false;
     };
@@ -67,7 +65,7 @@ export default defineComponent({
       tabIndex.value = 0;
     };
     const closeModal = () => {
-      isFolder.value = false;
+      isModal.value = false;
       store.ACTIVE_MODAL_ID = "";
       store.ACTIVE_MODAL = store.ACTIVE_MODAL.filter(
         (item) => item.id !== iconValue.value.id
@@ -75,13 +73,13 @@ export default defineComponent({
     };
     const hideModal = () => {
       console.log("aaa");
-      isFolder.value = false;
+      isModal.value = false;
     };
     return {
       iconValue,
       isActive,
       tabIndex,
-      isFolder,
+      isModal,
       iconClass,
       onClickIcon,
       ondbClickIcon,

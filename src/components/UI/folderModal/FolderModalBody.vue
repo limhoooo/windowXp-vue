@@ -73,12 +73,4 @@ export default defineComponent({
   box-sizing: border-box;
   height: 100%;
 }
-.folderModal__body--content--left {
-  width: 180px;
-  height: 100%;
-  background: linear-gradient(rgb(116, 138, 255) 0%, rgb(64, 87, 211) 100%);
-  overflow: auto;
-  padding: 10px;
-  box-sizing: border-box;
-}
 </style>
