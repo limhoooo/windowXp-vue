@@ -21,7 +21,7 @@
     </header>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import computer from "../../../assets/images/computer.png";
 import { folderModalStore } from "../../../store/folderModalStore.js";

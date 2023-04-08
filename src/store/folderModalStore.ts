@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 export const folderModalStore = defineStore("folderModalStore", () => {
   const ACTIVE_MODAL = ref([]);
-  const ACTIVE_MODAL_ID = ref("");
+  const ACTIVE_MODAL_ID = ref(0);
   const ZINDEX = ref(0);
 
   return {

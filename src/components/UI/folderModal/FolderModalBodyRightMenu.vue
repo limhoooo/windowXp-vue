@@ -3,12 +3,12 @@
     <IconList :ICON_LIST="ICON_LIST" :type="'folder'" />
   </div>
 </template>
-<script>
+<script lang="ts">
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 export default defineComponent({
   components: {
-    IconList: defineAsyncComponent(() =>
-      import("../../windowIcons/IconList.vue")
+    IconList: defineAsyncComponent(
+      () => import("../../windowIcons/IconList.vue")
     ),
   },
   props: {

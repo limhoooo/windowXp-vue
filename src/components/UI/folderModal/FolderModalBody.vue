@@ -7,7 +7,7 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import window_mini_logo from "../../../assets/images/window_mini_logo.png";
 import arrow_left from "../../../assets/images/arrow_left.png";
@@ -18,14 +18,14 @@ import folder_up from "../../../assets/images/folder_up.png";
 import search from "../../../assets/images/search.png";
 export default defineComponent({
   components: {
-    FolderModalBodyToolbar: defineAsyncComponent(() =>
-      import("./FolderModalBodyToolbar.vue")
+    FolderModalBodyToolbar: defineAsyncComponent(
+      () => import("./FolderModalBodyToolbar.vue")
     ),
-    FolderModalBodyLeftMenu: defineAsyncComponent(() =>
-      import("./FolderModalBodyLeftMenu.vue")
+    FolderModalBodyLeftMenu: defineAsyncComponent(
+      () => import("./FolderModalBodyLeftMenu.vue")
     ),
-    FolderModalBodyRightMenu: defineAsyncComponent(() =>
-      import("./FolderModalBodyRightMenu.vue")
+    FolderModalBodyRightMenu: defineAsyncComponent(
+      () => import("./FolderModalBodyRightMenu.vue")
     ),
   },
   props: {

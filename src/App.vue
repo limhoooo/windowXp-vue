@@ -7,16 +7,17 @@
     </button>
   </div>
 </template>
-<script>
-import { defineAsyncComponent, defineComponent, ref } from "vue";
+<script lang="ts">
+import { defineAsyncComponent, defineComponent, Ref, ref } from "vue";
 import fullscreen from "./assets/images/fullscreen.png";
+import { iconType } from "./types/iconType";
 export default defineComponent({
   components: {
-    IconList: defineAsyncComponent(() =>
-      import("./components/windowIcons/IconList.vue")
+    IconList: defineAsyncComponent(
+      () => import("./components/windowIcons/IconList.vue")
     ),
-    Footer: defineAsyncComponent(() =>
-      import("./components/footer/Footer.vue")
+    Footer: defineAsyncComponent(
+      () => import("./components/footer/Footer.vue")
     ),
   },
   setup() {
@@ -30,7 +31,7 @@ export default defineComponent({
     const moveGithub = () => {
       window.open("https://github.com/limhoooo", "_blank");
     };
-    const ICON_LIST = ref([
+    const ICON_LIST = ref<iconType[]>([
       {
         id: new Date().getTime() + Math.random(),
         src: new URL(`@/assets/images/computer.png`, import.meta.url).href,

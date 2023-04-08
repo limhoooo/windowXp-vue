@@ -22,7 +22,8 @@
     <NotePadModal v-if="iconValue.type === 'notepad'" />
   </div>
 </template>
-<script>
+<script lang="ts">
+import { iconType } from "@/src/types/iconType.js";
 import {
   computed,
   defineAsyncComponent,
@@ -35,11 +36,11 @@ import { folderModalStore } from "../../../store/folderModalStore.js";
 
 export default defineComponent({
   components: {
-    FolderModalHead: defineAsyncComponent(() =>
-      import("./FolderModalHead.vue")
+    FolderModalHead: defineAsyncComponent(
+      () => import("./FolderModalHead.vue")
     ),
-    FolderModalBody: defineAsyncComponent(() =>
-      import("./FolderModalBody.vue")
+    FolderModalBody: defineAsyncComponent(
+      () => import("./FolderModalBody.vue")
     ),
     NotePadModal: defineAsyncComponent(() => import("./NotePadModal.vue")),
   },
@@ -49,24 +50,24 @@ export default defineComponent({
   },
   setup(props) {
     const store = folderModalStore();
-    const iconValue = computed(() => props.ICON);
-    const activeModalId = computed(() => store.ACTIVE_MODAL_ID);
+    const iconValue = computed(() => props.ICON as iconType);
+    const activeModalId = computed(() => store.ACTIVE_MODAL_ID as number);
     const isActive = computed(() => iconValue.value.id === activeModalId.value);
-    const folderModal = ref(null);
-    const folderModalHaeder = ref(null);
+    const folderModal = ref<any>(null);
+    const folderModalHaeder = ref<any>(null);
     const onClickZindexHandler = () => {
       store.ACTIVE_MODAL_ID = iconValue.value.id;
     };
     const focusOut = () => {
-      store.ACTIVE_MODAL_ID = "";
+      store.ACTIVE_MODAL_ID = 0;
     };
     // https://homzzang.com/b/js-1938
-    const dragElement = (elmnt) => {
+    const dragElement = (elmnt: HTMLElement) => {
       let pos1 = 0,
         pos2 = 0,
         pos3 = 0,
         pos4 = 0;
-      const dragMouseDown = (e) => {
+      const dragMouseDown = (e: MouseEvent) => {
         onClickZindexHandler();
         e = e || window.event;
         e.preventDefault();
@@ -78,7 +79,7 @@ export default defineComponent({
         document.onmousemove = elementDrag;
       };
 
-      const elementDrag = (e) => {
+      const elementDrag = (e: MouseEvent) => {
         e = e || window.event;
         e.preventDefault();
 

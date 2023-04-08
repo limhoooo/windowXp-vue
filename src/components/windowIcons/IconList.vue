@@ -1,17 +1,29 @@
 <template>
   <div :class="iconClass">
-    <Icon v-for="icon in ICON_LIST" :key="icon" :icon="icon" :type="type" />
+    <IconComponent
+      v-for="icon in ICON_LIST"
+      :key="icon"
+      :icon="icon"
+      :type="type"
+    />
   </div>
 </template>
 
-<script>
-import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
+<script lang="ts">
+import {
+  computed,
+  defineAsyncComponent,
+  defineComponent,
+  PropType,
+  ref,
+} from "vue";
+import { iconType } from "../../types/iconType";
 export default defineComponent({
   components: {
-    Icon: defineAsyncComponent(() => import("@/components/UI/Icon.vue")),
+    IconComponent: defineAsyncComponent(() => import("../UI/Icon.vue")),
   },
   props: {
-    ICON_LIST: Array,
+    ICON_LIST: Array as PropType<iconType[]>,
     type: String,
   },
   setup(props) {
@@ -21,6 +33,7 @@ export default defineComponent({
         ? "icon__folder__containar"
         : "icon__containar";
     });
+
     return {
       iconClass,
     };

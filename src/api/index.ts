@@ -7,10 +7,10 @@ import axios from "axios";
   responseFail : 응답 실패 
 */
 
-const githubAPI = "https://window-xp-92ffe-default-rtdb.firebaseio.com";
+const baseURL = "https://window-xp-92ffe-default-rtdb.firebaseio.com";
 
 const API = axios.create({
-  baseURL: githubAPI,
+  baseURL,
   headers: {},
 });
 

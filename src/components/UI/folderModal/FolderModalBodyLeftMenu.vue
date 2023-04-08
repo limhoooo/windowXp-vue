@@ -43,7 +43,7 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import left_icon_01 from "../../../assets/images/leftIcon/left_icon_01.png";
 import left_icon_02 from "../../../assets/images/leftIcon/left_icon_02.png";

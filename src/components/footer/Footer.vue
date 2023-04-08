@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import { folderModalStore } from "../../store/folderModalStore";
 

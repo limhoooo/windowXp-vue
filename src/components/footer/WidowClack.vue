@@ -2,7 +2,7 @@
   <div class="widow--clack">{{ clack }}</div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineAsyncComponent, defineComponent, ref } from "vue";
 
 export default defineComponent({

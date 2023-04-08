@@ -49,7 +49,7 @@
     </section>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
 import window_mini_logo from "../../../assets/images/window_mini_logo.png";
 import arrow_left from "../../../assets/images/arrow_left.png";

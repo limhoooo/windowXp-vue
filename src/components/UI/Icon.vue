@@ -20,20 +20,27 @@
     />
   </div>
 </template>
-<script>
-import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
-import { folderModalStore } from "../../store/folderModalStore.js";
+<script lang="ts">
+import { iconType } from "@/src/types/iconType";
+import {
+  computed,
+  defineAsyncComponent,
+  defineComponent,
+  PropType,
+  ref,
+} from "vue";
+import { folderModalStore } from "../../store/folderModalStore";
 export default defineComponent({
   components: {
     Modal: defineAsyncComponent(() => import("./folderModal/Modal.vue")),
   },
   props: {
-    icon: Object,
+    icon: Object as PropType<iconType>,
     type: String,
   },
   setup(props) {
-    const store = folderModalStore();
-    const iconValue = computed(() => props.icon);
+    const store: any = folderModalStore();
+    const iconValue = computed(() => props.icon as iconType);
     const typeValue = computed(() => props.type);
     const isModal = ref(false);
     const isActive = ref(false);
@@ -47,12 +54,12 @@ export default defineComponent({
     };
     const ondbClickIcon = () => {
       if (iconValue.value.type === "link") {
-        iconValue.value.onMoveLink();
+        if (iconValue.value.onMoveLink) iconValue.value.onMoveLink();
       } else {
         isModal.value = true;
         store.ACTIVE_MODAL_ID = iconValue.value.id;
         const findFolder = store.ACTIVE_MODAL.find(
-          (item) => item.id === iconValue.value.id
+          (item: iconType) => item.id === iconValue.value.id
         );
         if (!findFolder)
           store.ACTIVE_MODAL = [...store.ACTIVE_MODAL, iconValue.value];
@@ -68,7 +75,7 @@ export default defineComponent({
       isModal.value = false;
       store.ACTIVE_MODAL_ID = "";
       store.ACTIVE_MODAL = store.ACTIVE_MODAL.filter(
-        (item) => item.id !== iconValue.value.id
+        (item: iconType) => item.id !== iconValue.value.id
       );
     };
     const hideModal = () => {

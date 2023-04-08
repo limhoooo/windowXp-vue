@@ -1,3 +1,4 @@
-# Vue 3 + Vite
+# Vue 3 + TypeScript + Vite
 
-vite, vue3 , pinia, lodash, vue-router
+절대경로 사용하여면 node 를 사용할거라고 알려줘야함 && 깔려있어야함
+npm i @types/node

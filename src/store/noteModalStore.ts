@@ -12,10 +12,9 @@ export const noteModalStore = defineStore("noteModalStore", () => {
       console.log(error);
     }
   };
-  const PUT_NOTEPAD = async (text) => {
+  const PUT_NOTEPAD = async (text: string) => {
     try {
       await API.put("/notepad.json", { "-NSP7H9U-toJuaVbu0cu": text });
-      return true;
     } catch (error) {
       console.log(error);
     }

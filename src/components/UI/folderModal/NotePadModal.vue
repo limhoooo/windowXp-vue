@@ -16,14 +16,8 @@
     ></textarea>
   </div>
 </template>
-<script>
-import {
-  computed,
-  defineAsyncComponent,
-  defineComponent,
-  ref,
-  watch,
-} from "vue";
+<script lang="ts">
+import { defineComponent, ref } from "vue";
 import { noteModalStore } from "../../../store/noteModalStore.js";
 
 export default defineComponent({
@@ -31,8 +25,8 @@ export default defineComponent({
   setup() {
     const store = noteModalStore();
     const notePadText = ref("");
-    const onSaveText = (e) => {
-      if ((e.which == "115" || e.which == "83") && (e.ctrlKey || e.metaKey)) {
+    const onSaveText = (e: KeyboardEvent) => {
+      if ((e.which == 115 || e.which == 83) && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         onSave();
       }
@@ -41,8 +35,8 @@ export default defineComponent({
       store.IS_NOTEPAD_UPDATE = true;
     };
     const onSave = () => {
-      const res = store.PUT_NOTEPAD(notePadText.value);
-      if (res) store.IS_NOTEPAD_UPDATE = false;
+      store.PUT_NOTEPAD(notePadText.value);
+      store.IS_NOTEPAD_UPDATE = false;
     };
     const onCreated = async () => {
       notePadText.value = await store.GET_NOTEPAD();

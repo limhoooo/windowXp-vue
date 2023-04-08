@@ -11,16 +11,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed } from "vue";
 import { folderModalStore } from "../../store/folderModalStore";
+import { iconType } from "@/src/types/iconType";
 export default {
   props: {
     data: Object,
   },
   setup(props) {
     const store = folderModalStore();
-    const modalValue = computed(() => props.data);
+    const modalValue = computed(() => props.data as iconType);
     const activeModalId = computed(() => store.ACTIVE_MODAL_ID);
     const isActive = computed(
       () => modalValue.value.id === activeModalId.value
