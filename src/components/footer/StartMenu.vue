@@ -1,6 +1,6 @@
 <template>
   <div class="start__menu" @click="toogleMenu" tabindex="1" @blur="hideMenu">
-    <div class="start__menu--box" v-show="isMenu">
+    <div class="start__menu--box" v-if="isMenu">
       <header class="start__menu__header"></header>
       <section class="start__menu__body"></section>
       <footer class="start__menu__footer"></footer>
@@ -80,7 +80,7 @@ export default {
 }
 .start__menu__body {
   width: 390px;
-  height: 600px;
+  height: 400px;
 }
 .start__menu__footer {
   display: flex;

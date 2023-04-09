@@ -28,9 +28,13 @@ export default defineComponent({
         if (document.exitFullscreen) document.exitFullscreen();
       }
     };
-    const moveGithub = () => {
+    const moveGithub = () =>
       window.open("https://github.com/limhoooo", "_blank");
-    };
+    const moveYoutube = () =>
+      window.open("https://limhoooo-react-youtube.netlify.app/", "_blank");
+    const movetistory = () =>
+      window.open("https://limhoooo.tistory.com/", "_blank");
+
     const ICON_LIST = ref<iconType[]>([
       {
         id: new Date().getTime() + Math.random(),
@@ -38,34 +42,22 @@ export default defineComponent({
         alt: "computer icon",
         name: "내컴퓨터",
         type: "folder",
-      },
-      {
-        id: new Date().getTime() + Math.random(),
-        src: new URL(`@/assets/images/folder.png`, import.meta.url).href,
-        alt: "folder icon",
-        name: "포트폴리오",
-        type: "folder",
         icons: [
           {
             id: new Date().getTime() + Math.random(),
-            src: new URL(`@/assets/images/computer.png`, import.meta.url).href,
-            alt: "computer icon",
-            name: "내컴퓨터",
-            type: "folder",
-          },
-          {
-            id: new Date().getTime() + Math.random(),
-            src: new URL(`@/assets/images/folder.png`, import.meta.url).href,
-            alt: "folder icon",
-            name: "포트폴리오",
-            type: "folder",
+            src: new URL(`@/assets/images/tistory_icon.png`, import.meta.url)
+              .href,
+            alt: "tistory icon",
+            name: "My Tistory",
+            type: "link",
+            onMoveLink: movetistory,
           },
           {
             id: new Date().getTime() + Math.random(),
             src: new URL(`@/assets/images/github_logo.png`, import.meta.url)
               .href,
             alt: "gitHub icon",
-            name: "gitHub",
+            name: "My GitHub",
             type: "link",
             onMoveLink: moveGithub,
           },
@@ -73,9 +65,16 @@ export default defineComponent({
       },
       {
         id: new Date().getTime() + Math.random(),
+        src: new URL(`@/assets/images/folder.png`, import.meta.url).href,
+        alt: "folder icon",
+        name: "내 폴더",
+        type: "folder",
+      },
+      {
+        id: new Date().getTime() + Math.random(),
         src: new URL(`@/assets/images/github_logo.png`, import.meta.url).href,
         alt: "gitHub icon",
-        name: "gitHub",
+        name: "GitHub",
         type: "link",
         onMoveLink: moveGithub,
       },
@@ -85,6 +84,14 @@ export default defineComponent({
         alt: "notepad icon",
         name: "메모장",
         type: "notepad",
+      },
+      {
+        id: new Date().getTime() + Math.random(),
+        src: new URL(`@/assets/images/youtube-icon.png`, import.meta.url).href,
+        alt: "youtube icon",
+        name: "YouTube",
+        type: "link",
+        onMoveLink: moveYoutube,
       },
     ]);
 
@@ -98,6 +105,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.window {
+  width: 100%;
+  height: 100%;
+}
 .fullSizeBtn {
   position: absolute;
   right: 40px;

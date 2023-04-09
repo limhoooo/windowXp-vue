@@ -23,14 +23,13 @@
   </div>
 </template>
 <script lang="ts">
-import { iconType } from "@/src/types/iconType.js";
+import { iconType } from "@/src/types/iconType";
 import {
   computed,
   defineAsyncComponent,
   defineComponent,
   onMounted,
   ref,
-  watch,
 } from "vue";
 import { folderModalStore } from "../../../store/folderModalStore.js";
 
@@ -56,6 +55,8 @@ export default defineComponent({
     const folderModal = ref<any>(null);
     const folderModalHaeder = ref<any>(null);
     const onClickZindexHandler = () => {
+      console.log("aaaaaaaaaaa");
+
       store.ACTIVE_MODAL_ID = iconValue.value.id;
     };
     const focusOut = () => {
@@ -134,10 +135,10 @@ export default defineComponent({
   flex-direction: column;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  z-index: 0;
+  z-index: 1;
 }
 .folderModal.active {
   background-color: rgb(8, 49, 217);
-  z-index: 1;
+  z-index: 2;
 }
 </style>
