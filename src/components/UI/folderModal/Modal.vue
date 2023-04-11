@@ -1,17 +1,19 @@
 <template>
   <div
     class="folderModal"
-    :class="{ active: isActive }"
+    :class="{ active: isActive, maxSize: isMaxSize }"
     @click="onClickZindexHandler"
     :tabindex="isActive ? '1' : '0'"
     @blur="focusOut"
     ref="folderModal"
+    v-show="!isUnActiveModal"
   >
     <div ref="folderModalHaeder">
       <FolderModalHead
         :ICON="ICON"
+        :isMaxSize="isMaxSize"
         @close="$emit('close')"
-        @hide="$emit('hide')"
+        @maxSize="maxSizeFnc"
         :isActive="isActive"
       />
     </div>
@@ -51,17 +53,23 @@ export default defineComponent({
     const store = folderModalStore();
     const iconValue = computed(() => props.ICON as iconType);
     const activeModalId = computed(() => store.ACTIVE_MODAL_ID as number);
+    const isUnActiveModal = computed(() =>
+      store.UNACTIVE_MODAL.find((item) => item === iconValue.value.id)
+    );
     const isActive = computed(() => iconValue.value.id === activeModalId.value);
+    const isMaxSize = ref(false);
     const folderModal = ref<any>(null);
     const folderModalHaeder = ref<any>(null);
     const onClickZindexHandler = () => {
-      console.log("aaaaaaaaaaa");
-
       store.ACTIVE_MODAL_ID = iconValue.value.id;
     };
     const focusOut = () => {
       store.ACTIVE_MODAL_ID = 0;
     };
+    const maxSizeFnc = () => {
+      isMaxSize.value = !isMaxSize.value;
+    };
+
     // https://homzzang.com/b/js-1938
     const dragElement = (elmnt: HTMLElement) => {
       let pos1 = 0,
@@ -75,6 +83,8 @@ export default defineComponent({
         // 헤더 시작지점 마우스좌표 얻기
         pos3 = e.clientX;
         pos4 = e.clientY;
+        // 폴더 Max Size 시엔 작동 X
+        if (isMaxSize.value) return;
         document.onmouseup = closeDragElement;
         // 이동지점 마우스좌표 얻기
         document.onmousemove = elementDrag;
@@ -116,6 +126,9 @@ export default defineComponent({
       focusOut,
       folderModal,
       folderModalHaeder,
+      isUnActiveModal,
+      maxSizeFnc,
+      isMaxSize,
     };
   },
 });
@@ -140,5 +153,11 @@ export default defineComponent({
 .folderModal.active {
   background-color: rgb(8, 49, 217);
   z-index: 2;
+}
+.folderModal.maxSize {
+  width: 100%;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
 }
 </style>

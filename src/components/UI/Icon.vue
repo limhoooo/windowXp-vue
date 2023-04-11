@@ -16,7 +16,6 @@
       :ICON_LIST="iconValue.icons"
       :ICON="icon"
       @close="closeModal"
-      @hide="hideModal"
     />
   </div>
 </template>
@@ -78,10 +77,7 @@ export default defineComponent({
         (item: iconType) => item.id !== iconValue.value.id
       );
     };
-    const hideModal = () => {
-      console.log("aaa");
-      isModal.value = false;
-    };
+
     return {
       iconValue,
       isActive,
@@ -92,7 +88,6 @@ export default defineComponent({
       ondbClickIcon,
       onBlurIcon,
       closeModal,
-      hideModal,
     };
   },
 });

@@ -27,7 +27,15 @@ export default {
       () => modalValue.value.id === activeModalId.value
     );
     const activeHandler = () => {
-      store.ACTIVE_MODAL_ID = modalValue.value.id;
+      if (store.ACTIVE_MODAL_ID === modalValue.value.id) {
+        store.ACTIVE_MODAL_ID = 0;
+        store.UNACTIVE_MODAL.push(modalValue.value.id);
+      } else {
+        store.ACTIVE_MODAL_ID = modalValue.value.id;
+        store.UNACTIVE_MODAL = store.UNACTIVE_MODAL.filter(
+          (item) => item !== modalValue.value.id
+        );
+      }
     };
     return {
       isActive,

@@ -59,6 +59,7 @@ export default defineComponent({
   left: 0px;
   display: flex;
   justify-content: space-between;
+  z-index: 99;
 }
 .footer--left__Box {
   width: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @dblclick="maxSizeFnc">
     <div class="header__bg" :class="{ active: isActive }"></div>
     <header class="folderModal__header">
       <div>
@@ -12,7 +12,11 @@
           class="folderModal__header__btn--min"
           @click.stop="folderModalMin"
         ></button>
-        <button class="folderModal__header__btn--max"></button>
+        <button
+          class="folderModal__header__btn--max"
+          :class="{ maxSizeBtn: isMaxSize }"
+          @click="maxSizeFnc"
+        ></button>
         <button
           class="folderModal__header__btn--close"
           @click="$emit('close')"
@@ -22,28 +26,39 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineAsyncComponent, defineComponent, ref } from "vue";
+import {
+  computed,
+  defineAsyncComponent,
+  defineComponent,
+  ref,
+  PropType,
+} from "vue";
 import computer from "../../../assets/images/computer.png";
 import { folderModalStore } from "../../../store/folderModalStore.js";
 import { noteModalStore } from "../../../store/noteModalStore.js";
-
 export default defineComponent({
   props: {
-    ICON: Object,
+    ICON: Object as any,
     isActive: Boolean,
+    isMaxSize: Boolean,
   },
   setup(props, { emit }) {
     const folderStore = folderModalStore();
     const noteStore = noteModalStore();
+    const icon = computed(() => props.ICON.id as number);
     const idNotepadUpdate = computed(() => noteStore.IS_NOTEPAD_UPDATE);
     const folderModalMin = () => {
-      // store.ACTIVE_MODAL_ID = "";
-      // emit("hide");
+      folderStore.ACTIVE_MODAL_ID = 0;
+      folderStore.UNACTIVE_MODAL.push(icon.value);
+    };
+    const maxSizeFnc = () => {
+      emit("maxSize");
     };
     return {
       computer,
       folderModalMin,
       idNotepadUpdate,
+      maxSizeFnc,
     };
   },
 });
@@ -201,6 +216,28 @@ export default defineComponent({
   box-shadow: white 0px 3px inset, white 0px 0px 0px 1px inset;
   height: 12px;
   width: 12px;
+}
+.maxSizeBtn::after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 7px;
+  top: 4px;
+  box-shadow: white 0px 2px inset, white 0px 0px 0px 1px inset;
+  height: 8px;
+  width: 8px;
+}
+.maxSizeBtn::after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 4px;
+  top: 7px;
+  box-shadow: white 0px 2px inset, white 0px 0px 0px 1px inset,
+    rgb(19, 109, 255) 1px -1px;
+  height: 8px;
+  width: 8px;
+  background-color: rgb(19, 109, 255);
 }
 .folderModal__header__btn--close {
   box-shadow: rgb(218, 70, 0) 0px -1px 2px 1px inset !important;
