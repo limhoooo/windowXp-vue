@@ -31,7 +31,7 @@ export default defineComponent({
     const moveGithub = () =>
       window.open("https://github.com/limhoooo", "_blank");
     const moveYoutube = () =>
-      window.open("https://limhoooo-react-youtube.netlify.app/", "_blank");
+      window.open("https://limhoooo-youtube.netlify.app", "_blank");
     const movetistory = () =>
       window.open("https://limhoooo.tistory.com/", "_blank");
 
