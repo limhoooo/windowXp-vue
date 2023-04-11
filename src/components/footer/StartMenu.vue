@@ -2,7 +2,7 @@
   <div class="start__menu" @click="toogleMenu" tabindex="1" @blur="hideMenu">
     <div class="start__menu--box" v-if="isMenu">
       <header class="start__menu__header"></header>
-      <section class="start__menu__body"></section>
+      <section class="start__menu__body">작업중입니다.</section>
       <footer class="start__menu__footer"></footer>
     </div>
   </div>
@@ -81,6 +81,13 @@ export default {
 .start__menu__body {
   width: 390px;
   height: 400px;
+  background-color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #aaa;
+  font-size: 12px;
 }
 .start__menu__footer {
   display: flex;
