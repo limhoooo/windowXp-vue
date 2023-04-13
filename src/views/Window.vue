@@ -34,6 +34,8 @@ export default defineComponent({
       window.open("https://limhoooo-youtube.netlify.app", "_blank");
     const movetistory = () =>
       window.open("https://limhoooo.tistory.com/", "_blank");
+    const moveCarrot = () =>
+      window.open("https://limhoooo-game-carrot.netlify.app/", "_blank");
 
     const ICON_LIST = ref<iconType[]>([
       {
@@ -92,6 +94,14 @@ export default defineComponent({
         name: "YouTube",
         type: "link",
         onMoveLink: moveYoutube,
+      },
+      {
+        id: new Date().getTime() + Math.random(),
+        src: new URL(`@/assets/images/carrot_icon.png`, import.meta.url).href,
+        alt: "carrot icon",
+        name: "당근잡기 게임",
+        type: "link",
+        onMoveLink: moveCarrot,
       },
     ]);
 

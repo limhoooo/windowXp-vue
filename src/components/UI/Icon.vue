@@ -8,7 +8,9 @@
       @blur="onBlurIcon"
       :tabindex="tabIndex"
     >
-      <img :src="iconValue.src" :alt="iconValue.alt" />
+      <div class="icon__box--image">
+        <img :src="iconValue.src" :alt="iconValue.alt" />
+      </div>
       <p :class="iconClass">{{ iconValue.name }}</p>
     </div>
     <Modal
@@ -102,6 +104,14 @@ export default defineComponent({
 .icon__box img {
   width: 42px;
 }
+.icon__box--image {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding-bottom: 6px;
+}
 .icon--name {
   width: 100%;
   font-size: 12px;
@@ -109,6 +119,7 @@ export default defineComponent({
   text-shadow: black 0px 1px 1px;
   display: flex;
   justify-content: center;
+  word-break: keep-all;
 }
 .icon__folder--name {
   width: 100%;
