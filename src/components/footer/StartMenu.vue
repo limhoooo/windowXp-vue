@@ -1,16 +1,27 @@
 <template>
   <div class="start__menu" @click="toogleMenu" tabindex="1" @blur="hideMenu">
     <div class="start__menu--box" v-if="isMenu">
-      <header class="start__menu__header"></header>
-      <section class="start__menu__body">작업중입니다.</section>
+      <header class="start__menu__header">
+        <img :src="limhoIcon" alt="limho_icon" />
+        <span>Limho</span>
+      </header>
+      <section class="start__menu__body">
+        <StartMenuLeft />
+        <StartMenuRight />
+      </section>
       <footer class="start__menu__footer"></footer>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
-export default {
+import { defineAsyncComponent, defineComponent, ref } from "vue";
+import limhoIcon from "../../assets/images/limho.jpg";
+export default defineComponent({
+  components: {
+    StartMenuLeft: defineAsyncComponent(() => import("./StartMenuLeft.vue")),
+    StartMenuRight: defineAsyncComponent(() => import("./StartMenuRight.vue")),
+  },
   setup() {
     const isMenu = ref(false);
     const toogleMenu = () => {
@@ -23,9 +34,10 @@ export default {
       isMenu,
       toogleMenu,
       hideMenu,
+      limhoIcon,
     };
   },
-};
+});
 </script>
 
 <style scope>
@@ -40,7 +52,7 @@ export default {
   z-index: 99;
 }
 .start__menu:hover {
-  filter: brightness(105%);
+  /* filter: brightness(105%); */
 }
 .start__menu--box {
   position: absolute;
@@ -78,16 +90,19 @@ export default {
   );
   overflow: hidden;
 }
+.start__menu__header > img {
+  width: 25px;
+  margin-right: 8px;
+}
+.start__menu__header > span {
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.7) 1px 1px;
+}
 .start__menu__body {
   width: 390px;
   height: 400px;
   background-color: #fff;
-
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #aaa;
-  font-size: 12px;
 }
 .start__menu__footer {
   display: flex;
