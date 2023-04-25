@@ -5,6 +5,8 @@ const movetistory = () =>
   window.open("https://limhoooo.tistory.com/", "_blank");
 const moveCarrot = () =>
   window.open("https://limhoooo-game-carrot.netlify.app/", "_blank");
+const moveStarbucks = () =>
+  window.open("https://limhoooo-starbuxts.netlify.app", "_blank");
 
 const iconsData = [
   {
@@ -66,9 +68,17 @@ const iconsData = [
     id: new Date().getTime() + Math.random(),
     src: new URL(`@/assets/images/carrot_icon.png`, import.meta.url).href,
     alt: "carrot icon",
-    name: "당근잡기 게임",
+    name: "당근잡기",
     type: "link",
     onMoveLink: moveCarrot,
+  },
+  {
+    id: new Date().getTime() + Math.random(),
+    src: new URL(`@/assets/images/starbucks_logo.png`, import.meta.url).href,
+    alt: "starbucks_logo",
+    name: "스타벅스",
+    type: "link",
+    onMoveLink: moveStarbucks,
   },
 ];
 
