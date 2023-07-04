@@ -1,6 +1,12 @@
 const moveGithub = () => window.open("https://github.com/limhoooo", "_blank");
+
 const moveYoutube = () =>
   window.open("https://limhoooo-youtube.netlify.app", "_blank");
+const moveResume = () =>
+  window.open(
+    "https://few-tarragon-4ce.notion.site/fd8122d6b1ee44fd89016b1bf807d5f2",
+    "_blank"
+  );
 const movetistory = () =>
   window.open("https://limhoooo.tistory.com/", "_blank");
 const moveCarrot = () =>
@@ -16,6 +22,14 @@ const iconsData = [
     name: "내컴퓨터",
     type: "folder",
     icons: [
+      {
+        id: new Date().getTime() + Math.random(),
+        src: new URL(`@/assets/images/notion.png`, import.meta.url).href,
+        alt: "tistory icon",
+        name: "My Resume",
+        type: "link",
+        onMoveLink: moveResume,
+      },
       {
         id: new Date().getTime() + Math.random(),
         src: new URL(`@/assets/images/tistory_icon.png`, import.meta.url).href,
