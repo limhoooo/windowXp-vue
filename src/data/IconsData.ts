@@ -1,5 +1,4 @@
 const moveGithub = () => window.open("https://github.com/limhoooo", "_blank");
-
 const moveYoutube = () =>
   window.open("https://limhoooo-youtube.netlify.app", "_blank");
 const moveResume = () =>
