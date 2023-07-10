@@ -2,7 +2,7 @@
   <div class="loading__container">
     <div class="loading__container__section">
       <div>
-        <img :src="logo" alt="widowXp_loading_icon" />
+        <img :src="logo" alt="windowXp_loading_icon" />
         <div class="loading">
           <span></span>
           <span></span>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import logo from "../assets/images/widowXp_loading_icon.png";
+import logo from "../assets/images/windowXp_loading_icon.png";
 export default {
   setup() {
     return {
