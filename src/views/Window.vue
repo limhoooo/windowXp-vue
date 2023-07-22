@@ -8,7 +8,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, Ref, ref } from "vue";
+import { defineAsyncComponent, defineComponent, ref } from "vue";
 import fullscreen from "../assets/images/fullscreen.png";
 import { iconType } from "../types/iconType";
 import iconsData from "../data/IconsData";

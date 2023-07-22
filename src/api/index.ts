@@ -7,7 +7,7 @@ import axios from "axios";
   responseFail : 응답 실패 
 */
 
-const baseURL = "https://window-xp-92ffe-default-rtdb.firebaseio.com";
+const baseURL = "https://window-6d51a-default-rtdb.firebaseio.com/";
 
 const API = axios.create({
   baseURL,
