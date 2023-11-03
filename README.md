@@ -6,6 +6,9 @@ Window XP 컨셉의 PortPolio 프로젝트
 ## DEMO
 https://limhoooo-windowxp.netlify.app/
 
+![window](https://github.com/limhoooo/windowXp-vue/assets/24869943/cb66970e-fab6-46bd-b954-4947f5047e1e)
+
+
 ## 사용기술
 - Vue3 <br>
 - Typescript <br>
