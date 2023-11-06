@@ -12,6 +12,7 @@ https://limhoooo-windowxp.netlify.app/
 
 - Vite <br>
 - Vue3 <br>
+- Pinia <br>
 - Typescript <br>
 - Axios <br>
 - Firebase <br>

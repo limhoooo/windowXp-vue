@@ -24,12 +24,14 @@ export default defineComponent({
     const isWindowLoading = ref(true);
     const store = errorModalStore();
     const isErrorModal = computed(() => store.IS_ERROR_MODAL);
+
     document.addEventListener("keydown", function (event) {
       if (event.keyCode == 122) {
         event.preventDefault();
         store.IS_ERROR_MODAL = "APP 우측상단의 전체화면 버튼을 사용해주세요.";
       }
     });
+
     const onCreated = () => {
       setTimeout(() => {
         isWindowLoading.value = false;
