@@ -8,7 +8,7 @@ Window XP 컨셉의 PortPolio 프로젝트
 
 https://limhoooo-windowxp.netlify.app/
 
-![window](https://github.com/limhoooo/windowXp-vue/assets/24869943/cb66970e-fab6-46bd-b954-4947f5047e1e)
+![ezgif com-video-to-gif](https://github.com/limhoooo/windowXp-vue/assets/24869943/16af5d06-7e96-42c5-b1f3-720b39a3f23b)
 
 ## 사용기술
 
