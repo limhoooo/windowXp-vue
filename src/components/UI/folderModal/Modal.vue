@@ -70,7 +70,6 @@ export default defineComponent({
       isMaxSize.value = !isMaxSize.value;
     };
 
-    // https://homzzang.com/b/js-1938
     const dragElement = (elmnt: HTMLElement) => {
       let pos1 = 0,
         pos2 = 0,
