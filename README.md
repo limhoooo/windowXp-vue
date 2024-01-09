@@ -17,5 +17,4 @@ https://limhoooo-windowxp.netlify.app/
 - Typescript <br>
 - Axios <br>
 - Firebase <br>
-- Netlify <br>
 - Vite <br>

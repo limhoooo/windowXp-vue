@@ -21,14 +21,14 @@ const iconsData = [
     name: "내컴퓨터",
     type: "folder",
     icons: [
-      {
-        id: new Date().getTime() + Math.random(),
-        src: new URL(`@/assets/images/notion.png`, import.meta.url).href,
-        alt: "tistory icon",
-        name: "My Resume",
-        type: "link",
-        onMoveLink: moveResume,
-      },
+      // {
+      //   id: new Date().getTime() + Math.random(),
+      //   src: new URL(`@/assets/images/notion.png`, import.meta.url).href,
+      //   alt: "tistory icon",
+      //   name: "My Resume",
+      //   type: "link",
+      //   onMoveLink: moveResume,
+      // },
       {
         id: new Date().getTime() + Math.random(),
         src: new URL(`@/assets/images/tistory_icon.png`, import.meta.url).href,
